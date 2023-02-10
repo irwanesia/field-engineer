@@ -21,6 +21,16 @@
             <div class="row">
                 <div class="col-12 col-xl-12">
                     <div class="card">
+                    <div class="row mb-3">
+                                <div class="col-md-12 notif">
+                                    <!-- notifikasi berhasil  -->
+                                    <?php if(session('success')) :?>
+                                        <div class="alert alert-warning mx-2" id="notif" role="alert">
+                                            <?php echo session('success') ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                         <div class="card-body">
                             <div class="modal-body">
                                 <section class="section">
@@ -48,6 +58,7 @@
                                                             <h6 for="user">Kategori</h6>
                                                             <select class="form-select" name="kategori" id="kategori">
                                                                 <option disabled selected>-- Pilih --</option>
+                                                                <option value="telephon">Telephon</option>
                                                                 <option value="cctv">CCTV</option>
                                                                 <option value="email">Email</option>
                                                                 <option value="printer">Printer</option>
@@ -77,7 +88,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <h6 for="user">Create By</h6>
+                                                            <h6 for="user">Dibuat</h6>
                                                             <select class="form-select" name="create_by" id="create_by">
                                                                 <option disabled selected>-- Pilih --</option>
                                                                 <option value="Hanif">Hanif</option>
@@ -91,6 +102,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="card-body">
+                                        <button type="submit" class="btn btn-primary">Create</button>
+                                        <a href="/list_juklak"><span class="btn btn-secondary">Back</span></a>
+                                    </div>
                                 </section>
                             </div>
                         </div>
@@ -100,12 +115,4 @@
         </div>
     </section>
 </div>
-<script>
-    // $('#summernote').summernote({
-    //     height: 8000,                 // set editor height
-    //     minHeight: null,             // set minimum height of editor
-    //     maxHeight: null,             // set maximum height of editor
-    //     focus: true                  // set focus to editable area after initializing summernote
-    // });
-</script>
 <?= $this->endSection('content') ?>

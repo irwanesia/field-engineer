@@ -14,7 +14,7 @@ class Juklak_model extends Model
     protected $returnType     = 'array';
     // protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['tgl','slug', 'judul', 'kategori','isi_juklak', 'create_by', 'created','updated','modified'];
+    protected $allowedFields = ['tgl', 'judul', 'kategori', 'isi_juklak', 'create_by', 'created','updated','modified'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'created_at';

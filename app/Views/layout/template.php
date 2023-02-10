@@ -43,18 +43,44 @@
 <script src="<?= base_url('/extensions/apexcharts/apexcharts.min.js')?>"></script>
 <script src="<?= base_url('/js/pages/dashboard.js')?>"></script>
 <script src="<?= base_url() ?>/extensions/jquery/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="<?= base_url() ?>/js/pages/datatables.js"></script>
 <script src="<?= base_url() ?>/extensions/summernote/summernote-lite.min.js"></script>
 <script src="<?= base_url() ?>/js/pages/summernote.js"></script>
 
 <script>
-    // $('#summernote').summernote({
-    //     height: 1200px,                 // set editor height
-    //     minHeight: null,             // set minimum height of editor
-    //     maxHeight: null,             // set maximum height of editor
-    //     focus: true                  // set focus to editable area after initializing summernote
-    // });
+    $('.summernote').summernote({
+                // callbacks: {
+                //     onImageUpload: function(files) {
+                //         for (let i = 0; i < files.length; i++) {
+                //             $.upload(files[i]);
+                //         }
+                //     },
+                //     onMediaDelete: function(target) {
+                //         $.delete(target[0].src);
+                //     }
+                // },
+                placeholder: 'Isi Juklak disini!',
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                    ["style", ["bold", "italic", "underline", "clear"]],
+                    ["fontname", ["fontname"]],
+                    ["fontsize", ["fontsize"]],
+                    ["color", ["color"]],
+                    ["para", ["ul", "ol", "paragraph"]],
+                    ["height", ["height"]],
+                    ["insert", ["link", "picture", "imageList", "video", "hr"]],
+
+                ],
+                // dialogsInBody: true,
+                // imageList: {
+                //     endpoint: "<?php echo site_url('berita/listGambar') ?>",
+                //     fullUrlPrefix: "<?php echo base_url('uploads/berkas') ?>/",
+                //     thumbUrlPrefix: "<?php echo base_url('uploads/berkas') ?>/"
+                // }
+            });
 </script>
 
 </body>

@@ -33,9 +33,11 @@
                                 <table class="table table-hover table-lg" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Slug</th>
+                                            <th>Tgl</th>
                                             <th>Judul</th>
+                                            <th>Kategori</th>
                                             <th>Isi</th>
+                                            <th>Pembuat</th>
                                             <th>E\</th>
                                         </tr>
                                     </thead>
@@ -43,18 +45,22 @@
                                     <?php $no = 1 ?>
                                     <?php foreach($juklak as $row) : ?>
                                         <tr>
-                                            <td class="col-2">
-                                                <div class="d-flex align-items-center">
-                                                    <p class="mb-0">Si Ganteng</p>
-                                                </div>
+                                            <td>
+                                                <?= $row['tgl'] ?>
                                             </td>
-                                            <td class="col-auto">
-                                                <p class=" mb-0">Wow amazing design! Can you make another tutorial forthis design?</p>
+                                            <td>
+                                                <?= $row['judul'] ?>
                                             </td>
-                                            <td class="col-auto">
-                                                <p class=" mb-0">Wow amazing design! Can you make another tutorial forthis design?</p>
+                                            <td>
+                                                <?= $row['kategori'] ?>
                                             </td>
-                                            <td class="col-2">
+                                            <td>
+                                                <?= substr($row['isi_juklak'],0,100) ?>
+                                            </td>
+                                            <td>
+                                                <?= $row['create_by'] ?>
+                                            </td>
+                                            <td>
                                                 <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-eye-fill"></i></button>
                                                 <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil-square"></i></button>
                                                 <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete"><i class="bi bi-trash"></i></button></td>

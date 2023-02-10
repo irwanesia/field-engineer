@@ -1,50 +1,71 @@
-
-$('.summernote').summernote({
-    tabsize: 2,
-    height: 400,
-    // callbacks: {
-    //     onImageUpload: function(files){
-    //         for(let i=0; i<files.length; i++){
-    //             $.upload(files[i]);
-    //         }
-    //     },
-    //     onMediaDelete: function(target){
-    //         $.delete(target[0].src);
-    //     }
-    // }
-});
-
-// $.upload = function(file){
-//     let out = new FormData();
-//     out.append('file', file, file.name);
-//     $.ajax({
-//         method: 'POST',
-//         url: '<?php echo site_url(/juklak/uploadGambar) ?>',
-//         contentType: false,
-//         cache: false,
-//         processData: false,
-//         data: out,
-//         success: function(img){
-//             $('.summernote').summernote('insertImage', img);
+// $(document).ready(function() {
+//     $('.summernote').summernote({
+//         callbacks: {
+//             onImageUpload: function(files) {
+//                 for (let i = 0; i < files.length; i++) {
+//                     $.upload(files[i]);
+//                 }
+//             },
+//             onMediaDelete: function(target) {
+//                 $.delete(target[0].src);
+//             }
 //         },
-//         error: function(jqXHR, textStatus, errorThrown){
-//             console.error(textStatus, + " " + errorThrown);
-//         }
-        
-//     });
-// }
+//         height: 200,
+//         toolbar: [
+//             ["style", ["bold", "italic", "underline", "clear"]],
+//             ["fontname", ["fontname"]],
+//             ["fontsize", ["fontsize"]],
+//             ["color", ["color"]],
+//             ["para", ["ul", "ol", "paragraph"]],
+//             ["height", ["height"]],
+//             ["insert", ["link", "picture", "imageList", "video", "hr"]],
 
-$("#hint").summernote({
-    height: 100,
-    toolbar: false,
-    placeholder: 'type with apple, orange, watermelon and lemon',
-    hint: {
-        words: ['apple', 'orange', 'watermelon', 'lemon'],
-        match: /\b(\w{1,})$/,
-        search: function (keyword, callback) {
-            callback($.grep(this.words, function (item) {
-                return item.indexOf(keyword) === 0;
-            }));
-        }
-    }
-});
+//         ],
+//         dialogsInBody: true,
+//         imageList: {
+//             endpoint: "<?php echo site_url('berita/listGambar') ?>",
+//             fullUrlPrefix: "<?php echo base_url('uploads/berkas') ?>/",
+//             thumbUrlPrefix: "<?php echo base_url('uploads/berkas') ?>/"
+//         }
+//     });
+
+//     $.upload = function(file) {
+//         let out = new FormData();
+//         out.append('file', file, file.name);
+//         $.ajax({
+//             method: 'POST',
+//             url: "<?php echo site_url('juklak/uploadGambar') ?>",
+//             contentType: false,
+//             cache: false,
+//             processData: false,
+//             data: out,
+//             success: function(img) {
+//                 $('.summernote').summernote('insertImage', img);
+//             },
+//             error: function(jqXHR, textStatus, errorThrown) {
+//                 console.error(textStatus + " " + errorThrown);
+//             }
+//         });
+//     };
+//     $.delete = function(src) {
+//         $.ajax({
+//             method: 'POST',
+//             url: '<?php echo site_url("juklak/deleteGambar") ?>',
+//             cache: false,
+//             data: {
+//                 src: src
+//             },
+//             success: function(response) {
+//                 console.log(response);
+//             }
+
+//         });
+//     };
+// });
+
+// function konfirmasi(url) {
+//     var result = confirm("Want to delete?");
+//     if (result) {
+//         window.location.href = url;
+//     }
+// }
