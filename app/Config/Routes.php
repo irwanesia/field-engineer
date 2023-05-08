@@ -54,6 +54,27 @@ $routes->post('/logbook/edit/(:num)', 'LogBook::update/$1');
 $routes->post('/logbook/updateStatus/(:num)', 'LogBook::updateStatus/$1');
 $routes->delete('/logbook/delete/(:num)', 'LogBook::delete/$1');
 
+// route rak-it
+$routes->get('/rak-it', 'RakIT::index');
+$routes->post('/rak-it/add', 'RakIT::add');
+$routes->post('/rak-it/edit/(:num)', 'RakIT::update/$1');
+$routes->post('/rak-it/updateStatus/(:num)', 'RakIT::updateStatus/$1');
+$routes->delete('/rak-it/delete/(:num)', 'RakIT::delete/$1');
+
+// route data checklist rak IT
+$routes->get('/data-checklist-rakIT', 'CheckListRakIT::index');
+$routes->post('/CheckListRakIT/add', 'CheckListRakIT::add');
+$routes->post('/CheckListRakIT/edit/(:num)', 'CheckListRakIT::update/$1');
+$routes->post('/CheckListRakIT/updateStatus/(:num)', 'CheckListRakIT::updateStatus/$1');
+$routes->delete('/CheckListRakIT/delete/(:num)', 'CheckListRakIT::delete/$1');
+
+// route qr-code rak IT
+$routes->get('/qr-code', 'QrRakIT::index');
+$routes->post('/qr-code/add', 'QrRakIT::add');
+$routes->post('/qr-code/save', 'QrRakIT::save');
+$routes->post('/qr-code/edit/(:num)', 'QrRakIT::update/$1');
+$routes->delete('/qr-code/delete/(:num)', 'QrRakIT::delete/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

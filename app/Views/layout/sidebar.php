@@ -57,14 +57,17 @@
                         <li class="sidebar-item has-sub">
                             <a href="/ceklist-rak" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
-                                <span>Ceklis Rak IT</span>
+                                <span>Rak IT</span>
                             </a>
                             <ul class="submenu">
                                 <li class="submenu-item ">
-                                    <a href="#">List Barcode</a>
+                                    <a href="/rak-it">Data Rak IT</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="#">Data Ceklist</a>
+                                    <a href="/qr-code">QR Code</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="/data-checklist-rakIT">Data Check List</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="#">Lain-lain</a>
