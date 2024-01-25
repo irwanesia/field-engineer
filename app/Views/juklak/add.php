@@ -36,7 +36,7 @@
                                 <section class="section">
                                     <div class="card">
                                         <div class="card-body">
-                                        <form action="<?= base_url('/juklak/add') ?>" method="post">
+                                        <form action="<?= base_url('/juklak/add') ?>" method="post" enctype="multipart/form-data">
                                         <?= csrf_field() ?>
                                         <div class="row">
                                             <div class="col-md-12">

@@ -58,8 +58,8 @@ class Juklak extends BaseController
         if($this->request->getFile('file')){
             $dataFile = $this->request->getFile('file');
             $fileName = $dataFile->getRandomName();
-            $dataFile->move("uploads/berkas", $fileName);
-            echo base_url("uploads/berkas/$fileName");
+            $dataFile->move("uploads/", $fileName);
+            echo base_url("uploads/$fileName");
         }
     }
     
