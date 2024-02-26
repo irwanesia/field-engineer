@@ -9,7 +9,7 @@
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-start">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data Rak IT</li>
+                        <li class="breadcrumb-item active" aria-current="page">Data Report IBC</li>
                     </ol>
                 </nav>
             </div>
@@ -24,10 +24,10 @@
                 <div class="col-12 col-xl-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <span>Latest Rak IT</span>
+                            <span>Latest Report IBC</span>
                             <!-- Button trigger for Extra Large  modal -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
-                                <i class="bi bi-plus-circle-dotted"></i> <small>Add Rak IT</small>
+                                <i class="bi bi-plus-circle-dotted"></i> <small>Add Report IBC</small>
                             </button>
                         </div>
                         <div class="card-body table-responsive">
@@ -79,7 +79,7 @@
     </section>
 </div>
 
-<!--Modal add Rak IT-->
+<!--Modal add Report IBC-->
 <div class="me-1 mb-1 d-inline-block">
     <!--Extra Large Modal -->
     <div class="modal fade text-left w-100" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16"
@@ -88,7 +88,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel16">Add Data Rak IT</h4>
+                    <h4 class="modal-title" id="myModalLabel16">Add Data Report IBC</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <i data-feather="x"></i>
                     </button>
@@ -96,24 +96,28 @@
                 <div class="modal-body">
                     <section class="section">
                         <div class="card">
-                            <!-- <div class="card-header">
-                        <h4 class="card-title">Basic Inputs</h4>
-                        </div> -->
                             <div class="card-body">
-                                <form
-                                    action="<?= base_url('/rak-it/add') ?>"
-                                    method="post">
+                                <form action="<?= base_url('/report-ibc/add') ?>" method="post">
                                     <?= csrf_field() ?>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <h6 for="distro">Distro</h6>
-                                                <input type="text" class="form-control" name="distro" id="distro"
+                                                <h6 for="tanggal">Tanggal</h6>
+                                                <input type="date" class="form-control" name="tanggal" id="tanggal"
                                                     required>
                                             </div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <h6 for="lantai">Lantai</h6>
-                                                <input type="text" class="form-control" name="lantai" id="lantai"
+                                                <h6 for="distro">Lantai</h6>
+                                                <input type="text" class="form-control" name="lantai" id="distro"
+                                                required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <h6 for="lokasi">Titik Lokasi</h6>
+                                                <input type="text" class="form-control" name="lokasi" id="lokasi"
                                                     required>
                                             </div>
                                         </div>
@@ -138,7 +142,7 @@
 </div>
 </div>
 
-<!--Modal edit rak it-->
+<!--Modal edit Report IBC-->
 <?php foreach($rakit as $row) : ?>
 <div class="me-1 mb-1 d-inline-block">
     <div class="modal fade text-left w-100"
@@ -147,7 +151,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel16">Edit Rak IT</h4>
+                    <h4 class="modal-title" id="myModalLabel16">Edit Report IBC</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <i data-feather="x"></i>
                     </button>

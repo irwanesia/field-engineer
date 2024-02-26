@@ -81,7 +81,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <h6 for="">Isi Juklak</h6>
-                                                            <textarea class="form-control summernote" name="isi_juklak" id="" placeholder="Masukan isi juklak" required></textarea>
+                                                            <textarea class="form-control" name="isi_juklak" id="summernote" required></textarea>
                                                         </div>
                                                     </div>
                                                 </div>

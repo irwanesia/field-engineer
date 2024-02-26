@@ -61,6 +61,13 @@ $routes->post('/rak-it/edit/(:num)', 'RakIT::update/$1');
 $routes->post('/rak-it/updateStatus/(:num)', 'RakIT::updateStatus/$1');
 $routes->delete('/rak-it/delete/(:num)', 'RakIT::delete/$1');
 
+// route report ibc weekly
+$routes->get('/report-ibc', 'IBC::index');
+$routes->post('/report-ibc/save','IBC::save');
+$routes->post('/report-ibc/edit/(:num)', 'IBC::update/$1');
+$routes->post('/report-ibc/updateStatus/(:num)', 'IBC::updateStatus/$1');
+$routes->delete('/report-ibc/delete/(:num)', 'IBC::delete/$1');
+
 // route data checklist rak IT
 $routes->get('/data-checklist-rakIT', 'CheckListRakIT::index');
 $routes->post('/CheckListRakIT/add', 'CheckListRakIT::add');

@@ -74,6 +74,23 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="sidebar-item has-sub">
+                            <a href="/logbook" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-text-fill"></i>
+                                <span>Laporan</span>
+                            </a>
+                            <ul class="submenu">
+                                <li class="submenu-item ">
+                                    <a href="#">Cheklist PDS</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="/report-ibc">Report IBC Weekly</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">Lain-lain</a>
+                                </li>
+                            </ul>
+                        </li>
                         
                     </ul>
                 </div>
