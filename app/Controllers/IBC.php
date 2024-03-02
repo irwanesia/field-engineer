@@ -4,23 +4,53 @@ namespace App\Controllers;
 
 use App\Models\LogBook_model;
 use App\Models\ibc_model;
+use App\Models\Detail_Ibc_model;
 
 class IBC extends BaseController
 {
     protected $logbook_model;
     protected $ibc_model;
+    protected $detail_ibc_model;
 
     public function __construct()
     {
         $this->logbook_model = new LogBook_model();
         $this->ibc_model = new Ibc_model();
+        $this->detail_ibc_model = new Detail_Ibc_model();
     }
 
     public function index()
     {
+        // Dapatkan semua data kriteria
+        $detailReportIbcList = $this->detail_ibc_model->findAll();
+
+        // Inisialisasi array untuk menyimpan data subkriteria
+        $allData = [];
+
+        // Looping data kriteria
+        foreach ($detailReportIbcList as $data) {
+            // Dapatkan data subkriteria berdasarkan ID kriteria
+            $reportIBC = $this->ibc_model->where('id_transaksi', $data['id_transaksi'])->findAll();
+
+            // Tambahkan data subkriteria ke dalam array
+            $allData[] = [
+                'detailReportIbc' => $data,
+                'report_ibc' => $reportIBC,
+            ];
+        }
+
         $data = [
             'title' => 'Report IBC Weekly',
-            'ibc' => $this->ibc_model->getTanggal()
+            'reportIbc' => $allData
+        ];
+        return view('report-ibc/index', $data);
+    }
+
+    public function detail($tgl)
+    {
+        $data = [
+            'title' => 'Detail Report IBC Weekly',
+            'getIbc' => $this->ibc_model->find($tgl)
         ];
         return view('report-ibc/index', $data);
     }
@@ -32,81 +62,76 @@ class IBC extends BaseController
         $filesNetmonitor = $this->request->getFiles()['netmonitor'];
         $filesSpeedtest = $this->request->getFiles()['speedtest'];
         
-        $fileNetmonitor = [];
+        $fileNameNetmonitor = [];
         if($filesNetmonitor){
             foreach($filesNetmonitor as $fileNetmonitor){
                 if ($fileNetmonitor->isValid() && !$fileNetmonitor->hasMoved()) {
                     // Proses setiap file di sini
-                    $fileNameNetmonitor = $fileNetmonitor->getRandomName();
+                    $newFileName = $fileNetmonitor->getRandomName();
                     $fileSize = $fileNetmonitor->getSize();
                     // dan seterusnya...
+                    // Tambahkan nama file baru ke dalam array
+                    $fileNameNetmonitor[] = $newFileName; // Ini adalah perubahan kunci
 
                     // Contoh untuk memindahkan file
                     // $fileNetmonitor->move(WRITEPATH . 'data-image', $fileName);
-                    $fileNetmonitor->move('data-image', $fileNameNetmonitor);
+                    $fileNetmonitor->move('data-image', $newFileName);
                 }
             }
         }
+        // dd($fileNameNetmonitor);
 
-
+        $fileNameSpeedtest = [];
         if($filesSpeedtest){
             foreach($filesSpeedtest as $fileSpeedtest){
                 if ($fileSpeedtest->isValid() && !$fileSpeedtest->hasMoved()) {
                     // Proses setiap file di sini
-                    $fileNameSpeedtest = $fileSpeedtest->getRandomName();
+                    $newFileName = $fileSpeedtest->getRandomName();
                     $fileSize = $fileSpeedtest->getSize();
                     // dan seterusnya...
 
+                    $fileNameSpeedtest[] = $newFileName; // Ini adalah perubahan kunci
+
                     // Contoh untuk memindahkan file
                     // $fileSpeedtest->move(WRITEPATH . 'data-image', $fileName);
-                    $fileSpeedtest->move('data-image', $fileNameSpeedtest);
+                    $fileSpeedtest->move('data-image', $newFileName);
                 }
             }
         }
+        
+        // insert ke db detail ibc
+        $arr_provider = $this->request->getPost('provider');
+        $arr_netmonitor = $fileNameNetmonitor;
+        $arr_speedtest = $fileNameSpeedtest;
+        $arr_ket = $this->request->getPost('keterangan');
+        $idTransaksi = "IBC-" . time();
+        $count = count($arr_provider);
 
-        // cek apakah tidak ada gmbar netmonitor diupload
-        // if($fileNetmonitor->getError() == 4){
-        //     $namaNetmonitor = 'default.jpg';
-        // }else{
-        //     // generate nama gambar
-        //     $namaNetmonitor = $fileNetmonitor->getRandomName();
-        //     // pindahkan file ke folder data image
-        //     $fileNetmonitor->move('data-image', $namaNetmonitor);
-        // }
-        // // cek apakah tidak ada gmbar speedtest diupload
-        // if($fileSpeedtest->getError() == 4){
-        //     $namaSpeedtest = 'default.jpg';
-        // }else{
-        //     // generate nama gambar
-        //     $namaSpeedtest = $fileSpeedtest->getRandomName();
-        //     // pindahkan file ke folder data image
-        //     $fileSpeedtest->move('data-image', $namaSpeedtest);
-        // }
-
-        // insert ke db
-        $tgl = $this->request->getPost('tanggal');
-        $pelaksana = $this->request->getPost('pelaksana');
-        $lantai = $this->request->getPost('lantai');
-        $lokasi = $this->request->getPost('lokasi');
-        $provider = $this->request->getPost('provider');
-        $netmonitor = $fileNameNetmonitor;
-        $speedtest = $fileNameSpeedtest;
-        $ket = $this->request->getPost('keterangan');
-        $count = count($provider);
-
+        if(!empty($arr_provider)) {
             for ($i = 0; $i < $count; $i++) {
                 // isi price total otomatis
-                $this->ibc_model->save([
-                    'tgl'           => $tgl,
-                    'pelaksana'     => $pelaksana,
-                    'lantai'        => $lantai,
-                    'lokasi'        => $lokasi,
-                    'provider'      => $provider[$i],
-                    'netmonitor'    => $netmonitor,
-                    'speedtest'     => $speedtest,
-                    'keterangan'    => $ket[$i],
+                $this->detail_ibc_model->save([
+                    'id_transaksi'          => $idTransaksi,
+                    'provider'              => $arr_provider[$i],
+                    'foto_hasil_netmonitor' => $arr_netmonitor[$i],
+                    'foto_hasil_speedtest'  => $arr_speedtest[$i],
+                    'keterangan'            => $arr_ket[$i],
                 ]);
             }
+        }
+
+        // insert ke tbl report_ibc
+        $this->ibc_model->save([
+            'id_transaksi'  => $idTransaksi,
+            'tanggal'       => $this->request->getPost('tanggal'),
+            'pelaksana'     => $this->request->getPost('pelaksana'),
+            'lantai'        => $this->request->getPost('lantai'),
+            'titik_lokasi'  => $this->request->getPost('lokasi'),
+            'row'           => $count,
+        ]);
+
+
+
 
         // return redirect()->back()->with('success', 'Report IBC berhasil disimpan!');
          // pesan data berhasil ditambah

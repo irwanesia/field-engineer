@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2024 at 01:23 AM
+-- Generation Time: Jan 25, 2024 at 03:18 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,30 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_juklak`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `detail_ibc`
---
-
-CREATE TABLE `detail_ibc` (
-  `id_detail_ibc` int(11) NOT NULL,
-  `id_transaksi` varchar(50) NOT NULL,
-  `provider` varchar(100) NOT NULL,
-  `foto_hasil_netmonitor` varchar(255) NOT NULL,
-  `foto_hasil_speedtest` varchar(255) NOT NULL,
-  `keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `detail_ibc`
---
-
-INSERT INTO `detail_ibc` (`id_detail_ibc`, `id_transaksi`, `provider`, `foto_hasil_netmonitor`, `foto_hasil_speedtest`, `keterangan`) VALUES
-(1, 'IBC-1709234463', 'telkomsel', '1709234463_2e8a82f8ab02519af00d.jpg', '1709234463_6ccd563f01b809c1ef91.jpg', 'bagus'),
-(2, 'IBC-1709234463', 'isat', '1709234463_22e315f1e004702c426a.jpg', '1709234463_fd59925d1cdab315b82f.jpg', 'kurang bagus'),
-(3, 'IBC-1709234463', 'xl', '1709234463_d114059e932f6f9f9ee9.jpg', '1709234463_ed58efda39286299b736.jpeg', 'bagus');
 
 -- --------------------------------------------------------
 
@@ -178,38 +154,9 @@ INSERT INTO `rak_it` (`id_rakit`, `distro`, `lantai`, `created_at`, `updated_at`
 (16, 'Distro 51', 'Lantai 51', '2023-05-08 11:41:47', '2023-05-08 11:41:47', '0000-00-00 00:00:00'),
 (17, 'Distro 53', 'Lantai 53', '2023-05-08 11:42:04', '2023-05-08 11:42:04', '0000-00-00 00:00:00');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `report_ibc`
---
-
-CREATE TABLE `report_ibc` (
-  `id_report_ibc` int(11) NOT NULL,
-  `id_transaksi` varchar(50) NOT NULL,
-  `tanggal` date NOT NULL,
-  `pelaksana` varchar(50) NOT NULL,
-  `lantai` varchar(50) NOT NULL,
-  `titik_lokasi` varchar(150) NOT NULL,
-  `row` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `report_ibc`
---
-
-INSERT INTO `report_ibc` (`id_report_ibc`, `id_transaksi`, `tanggal`, `pelaksana`, `lantai`, `titik_lokasi`, `row`) VALUES
-(1, 'IBC-1709234463', '2024-02-11', 'irwan', 'mz', 'Chikara', 3);
-
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `detail_ibc`
---
-ALTER TABLE `detail_ibc`
-  ADD PRIMARY KEY (`id_detail_ibc`);
 
 --
 -- Indexes for table `juklak`
@@ -236,20 +183,8 @@ ALTER TABLE `rak_it`
   ADD PRIMARY KEY (`id_rakit`);
 
 --
--- Indexes for table `report_ibc`
---
-ALTER TABLE `report_ibc`
-  ADD PRIMARY KEY (`id_report_ibc`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `detail_ibc`
---
-ALTER TABLE `detail_ibc`
-  MODIFY `id_detail_ibc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `juklak`
@@ -274,12 +209,6 @@ ALTER TABLE `qrcode_rak_it`
 --
 ALTER TABLE `rak_it`
   MODIFY `id_rakit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `report_ibc`
---
-ALTER TABLE `report_ibc`
-  MODIFY `id_report_ibc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
